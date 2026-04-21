@@ -1,0 +1,50 @@
+:root {
+    --common-btn-color: #000000;
+    --common-color: #ffffff;
+    --gradient-color: background: linear-gradient(135deg, #3B5BDB 0%, #8B5CF6 100%);
+
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+    line-height: 1;
+    font-family: 'Inter', sans-serif; 
+}
+span,button,a{
+    font-family: 'Inter', sans-serif;
+}
+a {
+    text-decoration: none;
+}
+.body {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+}
+.dark-btn{
+    background-color: var(--common-btn-color);
+    
+}
+ .dark-anchor{
+    background-color: var(--common-btn-color);
+    border-radius: 1rem;
+    color: var(--common-color);
+    font-weight: 500;
+    padding: 0.5rem 3rem;
+     margin-left: 1rem;
+    
+}
