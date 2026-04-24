@@ -48,7 +48,7 @@
                             <h3 class="mb-2">Welcome back, Muzamil 👋</h3>
                             <span>Here's an overview of your schools and financial status. </span>
                         </div>
-                        <div class="col-md-5 wdid">
+                        <div class="col-md-5 wdid d-flex justify-content-end">
                             <img src="{{asset('web/assets/images/wdash.png')}}" alt="">
                         </div>
                     </div>
@@ -202,5 +202,59 @@
         </div>
     </div>
 </div>
+<div class="container-fluid px-0 mt-3 pb-5">
+    <div class="px-4 dfst">
+        <h5>Payment Transactions</h5>
 
+        <div class="dfsti bg-transparent border-0">
+
+            <!-- Nav Pills -->
+            <ul class="nav nav-pills pt-2 span-div-dashboard-bottom custom-nav-pills-transactions">
+                <li class="nav-item">
+                    <button class="nav-link active all-transactions-tab" data-bs-toggle="pill" data-bs-target="#allTransactions">
+                        All<span>0</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link paid-transactions-tab" data-bs-toggle="pill" data-bs-target="#paidTransactions">
+                        Paid<span>0</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link unpaid-transactions-tab" data-bs-toggle="pill" data-bs-target="#unpaidTransactions">
+                        Unpaid<span>0</span>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+
+                <!-- All -->
+                <div class="tab-pane fade show active all-transactions-content" id="allTransactions">
+                    <div class="dfsti mt-3 p-5">
+                        <p class="text-center mb-0">No Transactions Found</p>
+                    </div>
+                </div>
+
+                <!-- Paid -->
+                <div class="tab-pane fade paid-transactions-content" id="paidTransactions">
+                    <div class="dfsti mt-3 p-5">
+                        <p class="text-center mb-0">No Transactions Found</p>
+                    </div>
+                </div>
+
+                <!-- Unpaid -->
+                <div class="tab-pane fade unpaid-transactions-content" id="unpaidTransactions">
+                    <div class="dfsti mt-3 p-5">
+                        <p class="text-center mb-0">No Transactions Found</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
 @endsection

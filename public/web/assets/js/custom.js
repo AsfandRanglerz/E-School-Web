@@ -20,16 +20,15 @@ $(document).ready(function(){
 
     });
 
-    
-   $('#planToggle').on('change', function () {
-    if ($(this).is(':checked')) {
-        $('#nav-monthly').removeClass('show active');
-        $('#nav-early').addClass('show active');
-    } else {
-        $('#nav-early').removeClass('show active');
-        $('#nav-monthly').addClass('show active');
-    }
-});
+    $('#planToggle').on('change', function () {
+        if ($(this).is(':checked')) {
+            $('#nav-monthly').removeClass('show active');
+            $('#nav-early').addClass('show active');
+        } else {
+            $('#nav-early').removeClass('show active');
+            $('#nav-monthly').addClass('show active');
+        }
+    });
 
     $(document).on('click', '.toggle-password', function () {
         let input = $(this).siblings('input');
@@ -42,7 +41,6 @@ $(document).ready(function(){
         }
     });
 
-    // ✅ Image Upload Preview (jQuery version)
     $('#profileUpload').on('change', function(e){
         let file = this.files[0];
 
@@ -51,7 +49,7 @@ $(document).ready(function(){
 
             reader.onload = function(e){
                 $('.span-for-profile-img-auth').html(
-                    `<img src="${e.target.result}" style="width:100%; height:100%; border-radius:50%; " alt="Profile Image">`
+                    `<img src="${e.target.result}" style="width:100%; height:100%; border-radius:50%;" alt="Profile Image">`
                 );
             }
 
@@ -59,7 +57,6 @@ $(document).ready(function(){
         }
     });
 
-    // ✅ OTP Input jQuery Logic (NEW ADD)
     $('.otp-input').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
 
@@ -74,7 +71,6 @@ $(document).ready(function(){
         }
     });
 
-    // ✅ Paste full OTP
     $('.otp-input').on('paste', function (e) {
         let pasteData = e.originalEvent.clipboardData.getData('text').replace(/[^0-9]/g, '');
         let inputs = $('.otp-input');
@@ -84,6 +80,58 @@ $(document).ready(function(){
         });
 
         e.preventDefault();
+    });
+
+    $('#academicYear').select2({
+        minimumResultsForSearch: Infinity,
+        dropdownCssClass: "academic-dropdown",
+        containerCssClass: "academic-container"
+    });
+
+    var $sidebar = $('.main-div-for-side-menu');
+    var $overlay = $('.sidebar-overlay');
+
+    function isMobile() {
+        return $(window).width() <= 768;
+    }
+
+    $(document).on('click', '.sidebar-toggle-btn', function (e) {
+        e.stopPropagation();
+
+        if (!isMobile()) {
+            $sidebar.toggleClass('sidebar-collapsed');
+        } else {
+            $sidebar.addClass('active');
+            $overlay.addClass('active');
+        }
+    });
+
+    $sidebar.on('click', function (e) {
+
+        if ($(e.target).closest('.sidebar-toggle-btn').length) {
+            return;
+        }
+
+        if (!isMobile()) {
+            $sidebar.removeClass('sidebar-collapsed');
+        }
+
+        if (isMobile() && !$sidebar.hasClass('active')) {
+            $sidebar.addClass('active');
+            $overlay.addClass('active');
+        }
+    });
+
+    $overlay.on('click', function () {
+        $sidebar.removeClass('active');
+        $overlay.removeClass('active');
+    });
+
+    $(document).on('click', '.sidebar-link', function () {
+        if (isMobile()) {
+            $sidebar.removeClass('active');
+            $overlay.removeClass('active');
+        }
     });
 
 });

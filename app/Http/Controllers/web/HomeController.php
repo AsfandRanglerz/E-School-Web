@@ -39,6 +39,10 @@ class HomeController extends Controller
     {
         return view('web.school.dashboard');
     }
+    public function adminDashboard()
+    {
+        return view('web.admin.dashboard');
+    }
 
 
 }
