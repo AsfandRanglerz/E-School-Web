@@ -12,3 +12,4 @@ Route::get('/forgot-password', [HomeController::class, 'forgotPassword']);
 Route::get('/reset-password', [HomeController::class, 'resetPassword']);
 Route::get('/school-dashboard', [HomeController::class, 'schoolDashboard']);
 Route::get('/admin-dashboard', [HomeController::class, 'adminDashboard'])->name('admin_dashboard');
+Route::get('/admin-students', [HomeController::class, 'adminStudents'])->name('admin_students');

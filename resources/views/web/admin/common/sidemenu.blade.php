@@ -20,7 +20,7 @@
         </li>
 
         <li>
-            <a href="#" class="sidebar-link students-link">
+            <a href="{{ route('admin_students') }}" class="sidebar-link students-link {{ request()->routeIs('admin_students') ? 'active' : '' }}">
                 <span class="sidebar-icon"> <img src="{{asset('web/assets/images/side2.png')}}" alt=""> </span>
                 <span class="sidebar-text">Students</span>
             </a>
