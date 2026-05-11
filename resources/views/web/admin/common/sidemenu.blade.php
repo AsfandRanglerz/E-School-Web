@@ -26,39 +26,39 @@
             </a>
         </li>
         <li>
-            <a href="#" class="sidebar-link attendance-link">
+            <a href="#" class="sidebar-link staff-link">
                 <span class="sidebar-icon "> <img src="{{asset('web/assets/images/staffs.png')}}" alt=""> </span>
                 <span class="sidebar-text">Staff</span>
             </a>
         </li>
         <li>
-            <a href="#" class="sidebar-link attendance-link">
+            <a href="#" class="sidebar-link ledger-link">
                 <span class="sidebar-icon "> <img src="{{asset('web/assets/images/ledgers.png')}}" alt=""> </span>
                 <span class="sidebar-text">Ledger</span>
             </a>
         </li>
         <li>
-            <a href="#" class="sidebar-link attendance-link">
+            <a href="#" class="sidebar-link finance-link">
                 <span class="sidebar-icon "> <img src="{{asset('web/assets/images/staffs.png')}}" alt=""> </span>
                 <span class="sidebar-text">Finance</span>
             </a>
         </li>
         <li>
-            <a href="#" class="sidebar-link attendance-link">
+            <a href="#" class="sidebar-link fees-link">
                 <span class="sidebar-icon "> <img src="{{asset('web/assets/images/fees.png')}}" alt=""> </span>
                 <span class="sidebar-text">Fees</span>
             </a>
         </li>
 
         <li>
-            <a href="#" class="sidebar-link lesson-link">
+            <a href="#" class="sidebar-link reports-link">
                 <span class="sidebar-icon "> <img src="{{asset('web/assets/images/staffs.png')}}" alt=""> </span>
                 <span class="sidebar-text">Reports</span>
             </a>
         </li>
 
         <li>
-            <a href="#" class="sidebar-link classes-link">
+            <a href="#" class="sidebar-link exams-link">
                 <span class="sidebar-icon "> <img src="{{asset('web/assets/images/exams.png')}}" alt=""> </span>
                 <span class="sidebar-text">Exams</span>
             </a>
@@ -71,22 +71,22 @@
         </li>
 
         <li>
-            <a href="#" class="sidebar-link result-link">
+            <a href="#" class="sidebar-link announcement-link">
                 <span class="sidebar-icon"> <img src="{{asset('web/assets/images/annas.png')}}" alt=""> </span>
                 <span class="sidebar-text">Announcements</span>
             </a>
         </li>
 
         <li>
-            <a href="#" class="sidebar-link diary-link">
+            <a href="#" class="sidebar-link todos-link">
                 <span class="sidebar-icon "> <img src="{{asset('web/assets/images/todos.png')}}" alt=""> </span>
                 <span class="sidebar-text">Todos</span>
             </a>
         </li>
         <li>
-            <a href="#" class="sidebar-link diary-link">
+            <a href="#" class="sidebar-link settings-link">
                 <span class="sidebar-icon "> <img src="{{asset('web/assets/images/sets.png')}}" alt=""> </span>
-                <span class="sidebar-text">Todos</span>
+                <span class="sidebar-text">Settings</span>
             </a>
         </li>
 

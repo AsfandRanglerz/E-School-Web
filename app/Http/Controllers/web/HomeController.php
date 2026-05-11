@@ -47,6 +47,14 @@ class HomeController extends Controller
     {
         return view('web.admin.students');
     }
+    public function adminStudentDetail()
+    {
+        return view('web.admin.student_detail');
+    }
+    public function adminAddStudent()
+    {
+        return view('web.admin.add_student');
+    }
 
 
 }
