@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-transparent px-3">
-    <div class="container-fluid  px-0">
+    <div class="container-fluid  px-0 container-fluid-for-header">
 
         <h6 class="navbar-brand navbar-brand-head mb-0"> <span class="me-2">S</span>eSchool</h6>
         <span class="standard-head-span">Standard</span>

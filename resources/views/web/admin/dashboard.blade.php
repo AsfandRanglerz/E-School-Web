@@ -521,13 +521,17 @@
                     </div>
 
                     <div class="chart-wrapper chart-total-profit pb-3">
+
                         <div class="chart-total-profit-inner">
+
                             <canvas id="totalProfitChart"></canvas>
+
                             <div class="chart-total-profit-center">
-                                <div class="chart-total-profit-label text-center">Total</div>
-                                <div class="chart-total-profit-value">2,324</div>
+                                
                             </div>
+
                         </div>
+
                     </div>
 
 
@@ -1401,11 +1405,19 @@
 <script>
 $(document).ready(function() {
 
+    /* =========================
+       DATE PICKER
+    ========================== */
     $("#attendancePicker [data-input]").datepicker({
+
         dateFormat: "yy-mm-dd",
+
         onSelect: function(dateText) {
 
-            let today = $.datepicker.formatDate('yy-mm-dd', new Date());
+            let today = $.datepicker.formatDate(
+                "yy-mm-dd",
+                new Date()
+            );
 
             if (dateText === today) {
                 $(this).val("Today");
@@ -1415,273 +1427,471 @@ $(document).ready(function() {
         }
     });
 
-    // default text
+    // Default text
     $("#attendancePicker [data-input]").val("Today");
 
 });
 </script>
+
 <script>
 $(function() {
 
+    /* =========================
+       CHART STORAGE
+    ========================== */
     const dashboardCharts = {};
 
+
+    /* =========================
+       DESTROY CHART
+    ========================== */
     function destroy(id) {
+
         if (dashboardCharts[id]) {
+
             dashboardCharts[id].destroy();
+
             delete dashboardCharts[id];
         }
     }
 
+
+    /* =========================
+       COMMON DOUGHNUT CHART
+    ========================== */
     function doughnut(id, items, opt = {}) {
+
         const el = document.getElementById(id);
+
         if (!el || typeof Chart === "undefined") return;
 
         destroy(id);
 
         dashboardCharts[id] = new Chart(el, {
+
             type: "doughnut",
+
             data: {
+
                 labels: items.map((i) => i.label),
+
                 datasets: [{
                     data: items.map((i) => i.value),
                     backgroundColor: items.map((i) => i.color),
                     borderWidth: 0
                 }]
             },
+
             options: {
+
                 responsive: true,
                 maintainAspectRatio: false,
+
                 cutout: opt.cutout ?? "40%",
+
                 plugins: {
+
                     legend: {
                         display: opt.legend !== false,
                         position: opt.legendPosition ?? "bottom",
+
                         labels: {
                             boxWidth: 10,
                             usePointStyle: true
                         }
                     },
+
                     tooltip: {
                         enabled: true,
-    backgroundColor: "#ffffff",
-    titleColor: "#000000",
-    bodyColor: "#000000",
-    borderColor: "#e5e7eb",
-    borderWidth: 1,
-    cornerRadius: 50, // circular rounded
-    padding: 12,
-    displayColors: false,
+                        backgroundColor: "#ffffff",
+                        titleColor: "#000000",
+                        bodyColor: "#000000",
+                        borderColor: "#e5e7eb",
+                        borderWidth: 1,
+                        cornerRadius: 50,
+                        padding: 12,
+                        displayColors: false
                     }
                 }
             }
         });
     }
 
+
+    /* =========================
+       TOTAL PROFIT CHART
+    ========================== */
     function totalProfit() {
-        const el = document.getElementById("totalProfitChart");
+
+        const el =
+            document.getElementById("totalProfitChart");
+
         if (!el || typeof Chart === "undefined") return;
 
         destroy("totalProfitChart");
 
         const track = "#EEF2F6";
 
-        dashboardCharts.totalProfitChart = new Chart(el, {
-            type: "doughnut",
-            data: {
-                datasets: [{
-                        label: "Profit",
-                        data: [70, 30],
-                        backgroundColor: ["#22C55E", track],
-                        borderWidth: 0
-                    },
-                    {
-                        label: "Income",
-                        data: [80, 20],
-                        backgroundColor: ["#EAB308", track],
-                        borderWidth: 0
-                    },
-                    {
-                        label: "Expense",
-                        data: [55, 45],
-                        backgroundColor: ["#EF4444", track],
-                        borderWidth: 0
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                rotation: -90,
-                circumference: 360,
-                // Keep ring thickness; add small gaps between rings
-                cutout: ["70%", "60%", "50%"],
-                spacing: 3,
-                plugins: {
-                    legend: {
-                        position: "bottom",
-                        onClick: null,
-                        labels: {
-                            usePointStyle: true,
-                            padding: 20,
-                            generateLabels() {
-                                return [{
-                                        text: "Profit",
-                                        fillStyle: "#22C55E",
-                                        strokeStyle: "#22C55E",
-                                        lineWidth: 0,
-                                        pointStyle: "circle",
-                                        hidden: false,
-                                        index: 0,
-                                        datasetIndex: 0
-                                    },
-                                    {
-                                        text: "Expense",
-                                        fillStyle: "#EF4444",
-                                        strokeStyle: "#EF4444",
-                                        lineWidth: 0,
-                                        pointStyle: "circle",
-                                        hidden: false,
-                                        index: 1,
-                                        datasetIndex: 2
-                                    },
-                                    {
-                                        text: "Income",
-                                        fillStyle: "#EAB308",
-                                        strokeStyle: "#EAB308",
-                                        lineWidth: 0,
-                                        pointStyle: "circle",
-                                        hidden: false,
-                                        index: 2,
-                                        datasetIndex: 1
-                                    }
-                                ];
-                            }
-                        }
-                    },
-                    tooltip: {
-                        tooltip: {
-    enabled: true,
-    backgroundColor: "#ffffff",
-    titleColor: "#000000",
-    bodyColor: "#000000",
-    borderColor: "#e5e7eb",
-    borderWidth: 1,
-    cornerRadius: 100,
-    padding: 12,
-    displayColors: false,
+        dashboardCharts.totalProfitChart =
+            new Chart(el, {
 
-    caretSize: 0, // remove side arrow
-    caretPadding: 0,
-                        callbacks: {
-                            label(ctx) {
-                                const name = ctx.dataset.label || "";
-                                const val = ctx.dataset.data[ctx.dataIndex];
-                                return name + ": " + val + "%";
+                type: "doughnut",
+
+                data: {
+
+                    datasets: [
+
+                        {
+                            label: "Profit",
+                            data: [70, 30],
+                            backgroundColor: [
+                                "#22C55E",
+                                track
+                            ],
+                            borderWidth: 0
+                        },
+
+                        {
+                            label: "Income",
+                            data: [80, 20],
+                            backgroundColor: [
+                                "#EAB308",
+                                track
+                            ],
+                            borderWidth: 0
+                        },
+
+                        {
+                            label: "Expense",
+                            data: [55, 45],
+                            backgroundColor: [
+                                "#EF4444",
+                                track
+                            ],
+                            borderWidth: 0
+                        }
+                    ]
+                },
+
+                options: {
+
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    rotation: -90,
+                    circumference: 360,
+
+                    // Keep ring thickness + small gaps
+                    cutout: ["70%", "60%", "50%"],
+                    spacing: 3,
+
+                    plugins: {
+
+                        legend: {
+                            position: "bottom",
+                            onClick: null,
+
+                            labels: {
+
+                                usePointStyle: true,
+                                padding: 20,
+
+                                generateLabels() {
+
+                                    return [
+
+                                        {
+                                            text: "Profit",
+                                            fillStyle: "#22C55E",
+                                            strokeStyle: "#22C55E",
+                                            lineWidth: 0,
+                                            pointStyle: "circle",
+                                            hidden: false,
+                                            index: 0,
+                                            datasetIndex: 0
+                                        },
+
+                                        {
+                                            text: "Expense",
+                                            fillStyle: "#EF4444",
+                                            strokeStyle: "#EF4444",
+                                            lineWidth: 0,
+                                            pointStyle: "circle",
+                                            hidden: false,
+                                            index: 1,
+                                            datasetIndex: 2
+                                        },
+
+                                        {
+                                            text: "Income",
+                                            fillStyle: "#EAB308",
+                                            strokeStyle: "#EAB308",
+                                            lineWidth: 0,
+                                            pointStyle: "circle",
+                                            hidden: false,
+                                            index: 2,
+                                            datasetIndex: 1
+                                        }
+                                    ];
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: "#ffffff",
+                            titleColor: "#000000",
+                            bodyColor: "#000000",
+                            borderColor: "#e5e7eb",
+                            borderWidth: 1,
+                            cornerRadius: 100,
+                            padding: 12,
+                            displayColors: false,
+                            caretSize: 0,
+                            caretPadding: 0,
+
+                            callbacks: {
+
+                                label(ctx) {
+
+                                    const name =
+                                        ctx.dataset.label || "";
+
+                                    const val =
+                                        ctx.dataset.data[
+                                            ctx.dataIndex
+                                        ];
+
+                                    return (
+                                        name + ": " + val + "%"
+                                    );
+                                }
                             }
                         }
                     }
                 }
-            }
-        });
+            });
     }
 
+
+    /* =========================
+       STUDENT CHART
+    ========================== */
     function loadStudentChart() {
-        doughnut("chartContainer", [{
-                label: "Present",
-                value: 3610,
-                color: "#3D5EE1"
-            },
+
+        doughnut(
+
+            "chartContainer",
+
+            [{
+                    label: "Present",
+                    value: 3610,
+                    color: "#3D5EE1"
+                },
+
+                {
+                    label: "Absent",
+                    value: 444,
+                    color: "#6FCCD8"
+                }
+            ],
+
             {
-                label: "Absent",
-                value: 444,
-                color: "#6FCCD8"
+                cutout: "40%"
             }
-        ], {
-            cutout: "40%"
-        });
+        );
     }
 
+
+    /* =========================
+       TEACHER CHART
+    ========================== */
     function loadTeacherChart() {
-        doughnut("chartContainer2", [{
-                label: "Present",
-                value: 200,
-                color: "#3D5EE1"
-            },
+
+        doughnut(
+
+            "chartContainer2",
+
+            [{
+                    label: "Present",
+                    value: 200,
+                    color: "#3D5EE1"
+                },
+
+                {
+                    label: "Absent",
+                    value: 20,
+                    color: "#6FCCD8"
+                }
+            ],
+
             {
-                label: "Absent",
-                value: 20,
-                color: "#6FCCD8"
+                cutout: "40%"
             }
-        ], {
-            cutout: "40%"
-        });
+        );
     }
 
+
+    /* =========================
+       STAFF CHART
+    ========================== */
     function loadStaffChart() {
-        doughnut("chartContainer3", [{
-                label: "Present",
-                value: 120,
-                color: "#3D5EE1"
-            },
+
+        doughnut(
+
+            "chartContainer3",
+
+            [{
+                    label: "Present",
+                    value: 120,
+                    color: "#3D5EE1"
+                },
+
+                {
+                    label: "Absent",
+                    value: 10,
+                    color: "#6FCCD8"
+                }
+            ],
+
             {
-                label: "Absent",
-                value: 10,
-                color: "#6FCCD8"
+                cutout: "40%"
             }
-        ], {
-            cutout: "40%"
-        });
+        );
     }
 
+
+    /* =========================
+       CASH / ONLINE CHART
+    ========================== */
     function loadCashOnlineChart() {
-        doughnut("cashOnline", [{
-                label: "Cash",
-                value: 50,
-                color: "#FF5A36"
-            },
+
+        doughnut(
+
+            "cashOnline",
+
+            [{
+                    label: "Cash",
+                    value: 50,
+                    color: "#FF5A36"
+                },
+
+                {
+                    label: "Online",
+                    value: 50,
+                    color: "#3B82F6"
+                }
+            ],
+
             {
-                label: "Online",
-                value: 50,
-                color: "#3B82F6"
+                cutout: "80%"
             }
-        ], {
-            cutout: "80%"
-        });
+        );
     }
 
-    $('button[data-bs-toggle="pill"]').on("shown.bs.tab", function(e) {
-        const target = $(e.target).attr("data-bs-target");
-        if (target === "#students") setTimeout(loadStudentChart, 0);
-        if (target === "#teachers") setTimeout(loadTeacherChart, 0);
-        if (target === "#staff") setTimeout(loadStaffChart, 0);
-    });
 
+    /* =========================
+       TAB SWITCH
+    ========================== */
+    $('button[data-bs-toggle="pill"]').on(
+
+        "shown.bs.tab",
+
+        function(e) {
+
+            const target =
+                $(e.target).attr("data-bs-target");
+
+            if (target === "#students") {
+                setTimeout(loadStudentChart, 0);
+            }
+
+            if (target === "#teachers") {
+                setTimeout(loadTeacherChart, 0);
+            }
+
+            if (target === "#staff") {
+                setTimeout(loadStaffChart, 0);
+            }
+        }
+    );
+
+
+    /* =========================
+       INITIAL LOAD
+    ========================== */
     setTimeout(function() {
-        if ($("#students").hasClass("show")) loadStudentChart();
+
+        if ($("#students").hasClass("show")) {
+            loadStudentChart();
+        }
+
         loadCashOnlineChart();
+
         totalProfit();
+
     }, 0);
 
+
+    /* =========================
+       WINDOW RESIZE
+    ========================== */
     let resizeTimer;
+
     $(window).on("resize", function() {
+
         clearTimeout(resizeTimer);
+
         resizeTimer = setTimeout(function() {
-            Object.keys(dashboardCharts).forEach((k) => {
-                if (dashboardCharts[k]?.resize) dashboardCharts[k].resize();
-            });
+
+            Object.keys(dashboardCharts).forEach(
+                (k) => {
+
+                    if (
+                        dashboardCharts[k]?.resize
+                    ) {
+                        dashboardCharts[k].resize();
+                    }
+                }
+            );
+
         }, 150);
     });
+
 });
 </script>
+
 <script>
-function createLineChart(id, color, bgColor, dataValues) {
+/* =========================
+   LINE CHART FUNCTION
+========================== */
+function createLineChart(
+    id,
+    color,
+    bgColor,
+    dataValues
+) {
+
     const ctx = document.getElementById(id);
+
     if (!ctx) return;
 
     new Chart(ctx, {
-        type: 'line',
+
+        type: "line",
+
         data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+
+            labels: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul"
+            ],
+
             datasets: [{
                 data: dataValues,
                 borderColor: color,
@@ -1691,18 +1901,26 @@ function createLineChart(id, color, bgColor, dataValues) {
                 pointRadius: 0
             }]
         },
+
         options: {
+
             responsive: true,
-            maintainAspectRatio: false, // ✅ ye line MUST hai
+
+            // MUST
+            maintainAspectRatio: false,
+
             plugins: {
                 legend: {
                     display: false
                 }
             },
+
             scales: {
+
                 x: {
                     display: false
                 },
+
                 y: {
                     display: false
                 }
@@ -1711,7 +1929,10 @@ function createLineChart(id, color, bgColor, dataValues) {
     });
 }
 
-// ✅ Function calls (ALAG likho)
+
+/* =========================
+   LINE CHART CALLS
+========================== */
 createLineChart(
     "earningsChart",
     "#3D5EE1",
@@ -1726,7 +1947,6 @@ createLineChart(
     [40, 30, 20, 45, 35, 50, 28]
 );
 </script>
-
 
 
 

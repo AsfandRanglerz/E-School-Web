@@ -233,21 +233,21 @@
                 <!-- All -->
                 <div class="tab-pane fade show active all-transactions-content" id="allTransactions">
                     <div class="dfsti mt-3 p-5">
-                        <p class="text-center mb-0">No Transactions Found</p>
+                        <p class="text-center mb-0 span-for-no-transaction-found">No Transactions Found</p>
                     </div>
                 </div>
 
                 <!-- Paid -->
                 <div class="tab-pane fade paid-transactions-content" id="paidTransactions">
                     <div class="dfsti mt-3 p-5">
-                        <p class="text-center mb-0">No Transactions Found</p>
+                        <p class="text-center mb-0 span-for-no-transaction-found">No Transactions Found</p>
                     </div>
                 </div>
 
                 <!-- Unpaid -->
                 <div class="tab-pane fade unpaid-transactions-content" id="unpaidTransactions">
                     <div class="dfsti mt-3 p-5">
-                        <p class="text-center mb-0">No Transactions Found</p>
+                        <p class="text-center mb-0 span-for-no-transaction-found">No Transactions Found</p>
                     </div>
                 </div>
 

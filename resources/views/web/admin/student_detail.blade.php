@@ -3,6 +3,15 @@
 
 @section('content')
 @include('web.admin.modals.terminate-student-modal')
+@include('web.admin.modals.change-family-modal')
+@include('web.admin.modals.send-whatsapp-message')
+@include('web.admin.modals.record-fine-blade')
+@include('web.admin.modals.add-recuring-modal')
+@include('web.admin.modals.add-document')
+@include('web.admin.modals.add-certificate-modal')
+@include('web.admin.modals.student-observation-modal')
+@include('web.admin.modals.student-promote-modal')
+@include('web.admin.modals.update-student-section-modal')
 
 <div class="container-fluid px-0 student-detail-wrapper">
     <div class="p-3">
@@ -58,29 +67,45 @@
                     Change Family
                 </button>
 
-                <button class="dark-anchor-btn dabtn-stdetail student-detail-whatsapp-btn">
+                <button class="dark-anchor-btn dabtn-stdetail student-detail-whatsapp-btn" data-bs-toggle="modal"
+                            data-bs-target="#sendWhatsAppModal">
                     Send WhatsApp
                 </button>
 
-                <button class="dark-anchor-btn dabtn-stdetail">
+                <button class="dark-anchor-btn dabtn-stdetail" data-bs-toggle="modal"
+                            data-bs-target="#recordFineModal">
                     Record Fine
                 </button>
 
-                <button class="dark-anchor-btn dabtn-stdetail">
+                <button class="dark-anchor-btn dabtn-stdetail" data-bs-toggle="modal"
+                            data-bs-target="#addRecurringModal">
                     Add Recurring Payment
                 </button>
 
-                <button class="dark-anchor-btn dabtn-stdetail">
+                <button class="dark-anchor-btn dabtn-stdetail" data-bs-toggle="modal"
+                            data-bs-target="#addDocumentModal">
                     Add Document
                 </button>
 
-                <button class="dark-anchor-btn dabtn-stdetail">
+                <button class="dark-anchor-btn dabtn-stdetail" data-bs-toggle="modal"
+                            data-bs-target="#addCertificateModal">
                     Issue Certificate
                 </button>
 
-                <button class="dark-anchor-btn dabtn-stdetail">
+                <button class="dark-anchor-btn dabtn-stdetail" data-bs-toggle="modal"
+                            data-bs-target="#studentObservationModal">
                     Add Observation
                 </button>
+                <button class="dark-anchor-btn dabtn-stdetail" data-bs-toggle="modal"
+                            data-bs-target="#studentPromoteModal">
+                    Promote Student
+                </button>
+                <button class="dark-anchor-btn dabtn-stdetail" data-bs-toggle="modal"
+                            data-bs-target="#updateStudentSectionModal">
+                    Update Section
+                </button>
+                 
+
 
             </div>
 
@@ -112,12 +137,12 @@
         </div>
         <div class="student-detail-bottom-wrapper pt-4">
 
-            <div class="row g-4">
+            <div class="row g-4 row-equal">
 
                 <!-- About Card -->
-                <div class="col-md-4">
+                <div class="col-xl-4">
 
-                    <div class="student-detail-bottom-card">
+                    <div class="student-detail-bottom-card w-100">
 
                         <div class="student-detail-bottom-header">
 
@@ -270,9 +295,9 @@
                 </div>
 
                 <!-- Class Card -->
-                <div class="col-md-4">
+                <div class="col-xl-4">
 
-                    <div class="student-detail-bottom-card">
+                    <div class="student-detail-bottom-card w-100">
 
                         <div class="student-detail-bottom-header">
 
@@ -378,9 +403,9 @@
                 </div>
 
                 <!-- Family Card -->
-                <div class="col-md-4">
+                <div class="col-xl-4">
 
-                    <div class="student-detail-bottom-card">
+                    <div class="student-detail-bottom-card w-100">
 
                         <div class="student-detail-bottom-header">
 

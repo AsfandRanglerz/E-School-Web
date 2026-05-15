@@ -55,6 +55,31 @@ class HomeController extends Controller
     {
         return view('web.admin.add_student');
     }
+    public function adminAddStudentFamily()
+    {
+        return view('web.admin.add-student-family');
+    }
+    public function adminStaff()
+    {
+        return view('web.admin.staff');
+    }
+    public function adminAddStaff()
+    {
+        return view('web.admin.add-staff');
+    }
+    public function adminStaffDetail()
+    {
+        return view('web.admin.staff_detail');
+    }
+    public function adminClasses()
+    {
+        return view('web.admin.classes');
+    }
+    public function adminLedger()
+    {
+        return view('web.admin.ledger');
+    }
+
 
 
 }
